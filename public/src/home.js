@@ -64,13 +64,17 @@ const popAuthors = [];
 for (const author of authors){
   const authorId = author.id;
   const borrowCount = borrowsCount[authorId];
-  const authorName = `${author.name.first} ${author.name.last}`;
-  popAuthors.push({name: authorName, count: borrowCount})  
+  // const authorName = `${author.name.first} ${author.name.last}`;
+  popAuthors.push({name: joinFirstAndLastNames(author), count: borrowCount})  
 }
 
 popAuthors.sort((author1, author2)=> author2.count - author1.count)
   return popAuthors.slice(0,5)
   
+}
+
+function joinFirstAndLastNames(author){
+  return `${author.name.first} ${author.name.last}`
 }
 
 module.exports = {
